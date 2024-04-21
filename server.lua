@@ -4,7 +4,7 @@ API = Proxy.getInterface('API')
 RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
     local playerId = source
 
-    User = DataUser or API.getUserFromSource(playerId)
+    User = DataUser or API.GetUserFromSource(playerId)
 
     local appearence = {}
 
@@ -15,22 +15,22 @@ RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
     --         -- table.insert(appearence,User:getCharacterAppearenceFromId(userId))     
     --     end            
     -- end
-    TriggerClientEvent('FRP:spawnSelector:DisplayCharSelection', User:getSource(), User:getCharacters(), appearence)
+    TriggerClientEvent('FRP:spawnSelector:DisplayCharSelection', User:GetSource(), User:GetCharacters(), appearence)
 end)
 
 RegisterNetEvent('FRP:spawnSelector:selectCharacter', function(cid)
     local _source = source
-    local User = API.getUserFromSource(_source)
-    local Character = User:setCharacter(cid)
+    local User = API.GetUserFromSource(_source)
+    local Character = User:SetCharacter(cid)
 
     if Character then
-        User:drawCharacter()
+        User:DrawCharacter()
     end
 end)
 
 RegisterNetEvent('FRP:spawnSelector:deleteCharacter', function(cid)
     local _source = source
-    local User = API.getUserFromSource(_source)
-    User:deleteCharacter(cid)
+    local User = API.GetUserFromSource(_source)
+    User:DeleteCharacter(cid)
     TriggerEvent('FRP:spawnSelector:DisplayCharSelection', source, _source)
 end)
