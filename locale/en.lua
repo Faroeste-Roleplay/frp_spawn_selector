@@ -1,6 +1,5 @@
 i18n.importData("en", {
-    char_deleted = "Personagem deletado.",
-    start_char_creation = "Criar um novo personagem",
-    start_char_creation_description = "Tem certeza que deseja criar um novo personagem?"
+    char_deleted = "Personage deleted.",
+    start_char_creation = "Create a new character",
+    start_char_creation_description = "Are you sure you want to create a new character?"
 })
-
