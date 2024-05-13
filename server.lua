@@ -6,16 +6,7 @@ RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
 
     User = DataUser or API.GetUserFromSource(playerId)
 
-    local appearence = {}
-
-    -- if User:getCharacters() ~= nil then
-    --     for i = 1, #User:getCharacters() do
-            
-    --         local userId = User:getCharacters()[i].charId
-    --         -- table.insert(appearence,User:getCharacterAppearenceFromId(userId))     
-    --     end            
-    -- end
-    TriggerClientEvent('FRP:spawnSelector:DisplayCharSelection', User:GetSource(), User:GetCharacters(), appearence)
+    TriggerClientEvent('FRP:spawnSelector:DisplayCharSelection', User:GetSource(), User:GetCharacters(), User:GetCharactersAppearance())
 end)
 
 RegisterNetEvent('FRP:spawnSelector:selectCharacter', function(cid)

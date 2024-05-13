@@ -50,43 +50,38 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
         vec3(885.192,1271.949,235.108 - 0.98)
     }
 
-    -- if charAppearence ~= nil then
-    --     for i = 1, #charAppearence do           
+    if charAppearence ~= nil then
+        for i = 1, #charAppearence do
+            local appearance = charAppearence[i]
+            local pedIsMale = appearance.character_appearance.isMale
+            local pedModel = pedIsMale and `mp_male` or `mp_female`
 
-    --         if not HasModelLoaded(charAppearence[i][1].model) then
-    --             RequestModel(charAppearence[i][1].model)
-    --             while not HasModelLoaded(charAppearence[i][1].model) do
-    --                 Citizen.Wait(10)
-    --             end
-    --         end
+            if appearance?.overridePedModel and appearance?.overridePedModel ~= "" then
+                pedModel = appearance.overridePedModel
+            end
 
-    --         local ped = CreatePed(charAppearence[i][1].model, fakePedCoords[i], 350.77, 0, 0)
+            local pedModelHash = GetHashKey(pedModel)
 
-    --         Citizen.Wait(300)
+            if not HasModelLoaded(pedModelHash) then
+                RequestModel(pedModelHash)
+                while not HasModelLoaded(pedModelHash) do
+                    Citizen.Wait(10)
+                end
+            end
+
+            local ped = CreatePed(pedModelHash, fakePedCoords[i], 350.77, 0, 0)
+
+            Citizen.Wait(300)
+
+            cAPI.ApplyCharacterAppearance(ped, appearance)
+
+            table.insert(fakePeds, ped)
             
-    --         cAPI.SetSkin(ped, charAppearence[i][1].enabledComponents)   
-
-    --         cAPI.SetPedFaceFeature(ped, charAppearence[i][1].faceFeatures)
+            local coords = GetEntityCoords(ped, false)
             
-    --         cAPI.SetPedScale(ped, charAppearence[i][1].pedHeight)
-
-    --         cAPI.SetPedOverlay(ped, charAppearence[i][1].overlays)
-            
-    --         local bodySize = json.decode(charAppearence[i][1].enabledComponents)
-
-    --         cAPI.SetPedPortAndWeight(ped, tonumber(bodySize['porte']), charAppearence[i][1].pedWeight)
-
-    --         if charAppearence[i][1].clothes ~= nil then
-    --             cAPI.SetSkin(ped, charAppearence[i][1].clothes)   
-    --         end
-
-    --         table.insert(fakePeds, ped)
-                        
-    --         local coords = GetEntityCoords(ped, false)
-            
-    --         Citizen.InvokeNative(0x322BFDEA666E2B0E, ped,  coords.x, coords.y, coords.z, 5.0, -1, 1, 1, 1, 1)                
-    --     end
-    -- end
+            Citizen.InvokeNative(0x322BFDEA666E2B0E, ped,  coords.x, coords.y, coords.z, 5.0, -1, 1, 1, 1, 1)                
+        end
+    end
 end)
 
 RegisterNetEvent("FRP:spawnSelector:SetTime")
