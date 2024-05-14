@@ -37,27 +37,6 @@ RegisterNUICallback("createCharacter", function()
 end)
 
 
--- function Destroy()
---     for _, ped in pairs(gEntities) do
---         DeleteEntity(ped)
---     end
-
---     FreezeEntityPosition(PlayerPedId(), false)
---     gEntities = {}
-
---     playerSelected = false
-
---     local playerPed = PlayerPedId()
-
---     Wait(1500)
-
---     SetFocusEntity(playerPed) 
---     SetEntityInvincible(playerPed, false)
---     SetEntityVisible(playerPed, true)
---     NetworkSetEntityInvisibleToNetwork(playerPed, false)
--- end
-
-
 RegisterCommand("start", function()
     TriggerServerEvent("FRP:spawnSelector:DisplayCharSelection")
 end)
@@ -67,11 +46,7 @@ RegisterNUICallback("selectCharacter", function(charId)
 
     PrepareInterpToFaceCamera(entity)
 
-    -- SetInteractionAreasEnabled(false)
-
     gSelectedCharacterId = charId
-
-    -- SetHideEveryEntityIgnoreThisEnabled(true, entity)
 
     while IsCamInterpolating(gInterpToFaceSceneCamera) do
         Wait(0)
