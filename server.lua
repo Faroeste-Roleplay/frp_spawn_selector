@@ -23,5 +23,5 @@ RegisterNetEvent('FRP:spawnSelector:deleteCharacter', function(cid)
     local _source = source
     local User = API.GetUserFromSource(_source)
     User:DeleteCharacter(cid)
-    TriggerEvent('FRP:spawnSelector:DisplayCharSelection', source, _source)
+    TriggerEvent('FRP:spawnSelector:DisplayCharSelection', User)
 end)
