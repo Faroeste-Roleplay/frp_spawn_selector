@@ -10,7 +10,11 @@ shared_scripts {
 
 client_scripts {
 	"@frp_core/lib/utils.lua",
-	'client.lua',
+	"config/config.lua",
+
+	'client/main.lua',
+	'client/camera.lua',
+	'client/scene.lua',
 }
 
 server_scripts {

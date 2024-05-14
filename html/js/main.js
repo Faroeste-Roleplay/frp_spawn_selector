@@ -10,8 +10,7 @@ window.addEventListener('message', (event) => {
 });
 
 var Identity = {};
-var LimitCharacters = 4
-
+var LimitCharacters = 3
 
 function LoadCharacters(list) {
 
@@ -74,7 +73,7 @@ $(document).on('click', '.char', function(e){
 function charSelected(charId, index) {			
     Identity.CharSelected = charId;
     $(".enter-world").css("opacity", "1")
-    $.post('https://frp_spawn_selector/selectCharacter', JSON.stringify(index));
+    $.post('https://frp_spawn_selector/selectCharacter', JSON.stringify(charId));
 }
 
 function enterWorld() {			
