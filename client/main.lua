@@ -31,8 +31,9 @@ RegisterNUICallback("createCharacter", function()
     if confirm == "confirm" then
         SetNuiFocus(false, false)
         SendNUIMessage({type = "hide"})
-        TriggerEvent("FRP:CHARCREATION:starting")
-        Destroy()
+        cAPI.StartFade(500)
+        FlushScene()
+        TriggerEvent("FRPCreator:Client:StartScript")
     end
 end)
 
