@@ -1,4 +1,4 @@
-local Proxy = module('frp_core', 'lib/Proxy')
+local Proxy = module("frp_lib", "lib/Proxy")
 API = Proxy.getInterface('API')
 
 RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
