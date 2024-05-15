@@ -4,6 +4,11 @@ local Proxy = module("frp_core", "lib/Proxy")
 cAPI = Proxy.getInterface("API")
 API = Tunnel.getInterface("API")
 
+Tunnel.bindInterface("frp_spawn_selector", Functions)
+Proxy.addInterface("frp_spawn_selector", Functions)
+
+Functions = {}
+
 gEntities = { }
 gCharIdFromEntity = { }
 
@@ -37,10 +42,12 @@ RegisterNUICallback("createCharacter", function()
     end
 end)
 
-
-RegisterCommand("start", function()
+function Functions.Start()
     TriggerServerEvent("FRP:spawnSelector:DisplayCharSelection")
-end)
+end
+
+Functions.Stop = FlushScene
+
 
 RegisterNUICallback("selectCharacter", function(charId)
     local entity = gEntityFromCharId[charId]
