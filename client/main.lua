@@ -3,6 +3,7 @@ local Proxy = module("frp_lib", "lib/Proxy")
 
 cAPI = Proxy.getInterface("API")
 API = Tunnel.getInterface("API")
+Appearance = Proxy.getInterface("frp_appearance")
 
 Tunnel.bindInterface("frp_spawn_selector", Functions)
 Proxy.addInterface("frp_spawn_selector", Functions)

@@ -2,6 +2,8 @@
 RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArray, charAppearence)
     FlushScene()
 
+    print(" ODIDO KD ")
+
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
@@ -53,6 +55,8 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
             local ped = CreatePed(pedModelHash, position.x, position.y, position.z, position.w, 0, 0)
 
             Citizen.Wait(300)
+
+            print(" DOKDODK :: DDFD", pedModel, appearance)
 
             cAPI.ApplyCharacterAppearance(ped, appearance)
 
