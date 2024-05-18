@@ -65,6 +65,10 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
             local ped = CreatePed(pedModelHash, position.x, position.y, position.z, position.w, true, true)
 
+            while NetworkGetNetworkIdFromEntity(ped) == 0 do
+                Wait(1)
+            end 
+
             TriggerServerEvent("net.charSelectorHandlerSetRoutingBucket", NetworkGetNetworkIdFromEntity(ped))
 
             Wait(100)
