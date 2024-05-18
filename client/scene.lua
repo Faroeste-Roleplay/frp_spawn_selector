@@ -1,11 +1,4 @@
-
-RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArray, charAppearence)
-    FlushScene()
-
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
-
+function setLocationOnWeb()
     local lang = i18n.getCurrentLanguage()
     local locales = i18n.exportData()
     local translation = locales[lang]
@@ -16,6 +9,17 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
             locale = translation
         }
     )
+end
+
+
+RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArray, charAppearence)
+    FlushScene()
+
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+
+    setLocationOnWeb()
 
     TriggerServerEvent("net.charSelectorHandlerSetPlayerRoutingBucket")
 

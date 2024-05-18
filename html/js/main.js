@@ -1,3 +1,5 @@
+let LOCALE = {};
+
 window.addEventListener('message', (event) => {
     if (event.data.type == 1){
         LoadCharacters(event.data.list);

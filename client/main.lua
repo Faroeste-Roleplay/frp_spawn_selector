@@ -88,12 +88,14 @@ end)
 
 AddEventHandler("onResourceStop", function(resourceName)
     if resourceName == GetCurrentResourceName() or resourceName == "frp_core" then
+        setLocationOnWeb()
         FlushScene()
     end
 end)
 
 AddEventHandler("onResourceStart", function(resourceName)
     if resourceName == GetCurrentResourceName() or resourceName == "frp_core" then
+        setLocationOnWeb()
         SendNUIMessage({
             type = 2,
         })    
