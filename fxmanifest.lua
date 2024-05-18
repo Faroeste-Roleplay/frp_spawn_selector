@@ -4,12 +4,11 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 shared_scripts {
 	"@ox_lib/init.lua",
-	"@frp_lib/lib/i18n.lua",
+	"@frp_lib/library/linker.lua",
 	"locale/*.lua"
 }
 
 client_scripts {
-	"@frp_lib/lib/utils.lua",
 	"config/config.lua",
 
 	'client/main.lua',
@@ -18,7 +17,7 @@ client_scripts {
 }
 
 server_scripts {
-	"@frp_lib/lib/utils.lua",
+	"@frp_lib/library/linker.lua",
 	'server.lua'
 }
 
