@@ -6,6 +6,8 @@ window.addEventListener('message', (event) => {
     } else if(event.data.type == "hide") {
         $(".container").fadeOut(500);
         $(".container").html('');
+    } else if(event.data.type == "translation") {
+        LOCALE = event.data.locale
     }
 });
 
@@ -17,9 +19,9 @@ function LoadCharacters(list) {
     $(".loading").html('');
     
     $(".container").html(`    
-        <div class="header-text">${LOCALES[LOCALE].CHARACTERS}</div>			
+        <div class="header-text">${LOCALE.CHARACTERS}</div>			
 
-        <div class="description-text">${LOCALES[LOCALE].DESCRIPTION}</div>		
+        <div class="description-text">${LOCALE.DESCRIPTION}</div>		
 
         <div class="main">
 
@@ -29,7 +31,7 @@ function LoadCharacters(list) {
         <div class="buttons">
 
             <div class="enter-world" onclick="enterWorld()">
-            ${LOCALES[LOCALE].ENTER_WORLD}
+            ${LOCALE.ENTER_WORLD}
             </div>
 
         </div>
@@ -58,7 +60,7 @@ function LoadCharacters(list) {
         for (let i = 0; i < empty_slot; i++){
             $(".main").append(`
             <div class="empty" onclick="createNewCharacter()">
-                <span>${LOCALES[LOCALE].CREATE_CHAR}</span>
+                <span>${LOCALE.CREATE_CHAR}</span>
             </div>        
         `);     
         }
