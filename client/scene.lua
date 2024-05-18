@@ -69,7 +69,8 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
             while NetworkGetNetworkIdFromEntity(ped) == 0 do
                 Wait(1)
-            end 
+            end
+            table.insert(gEntities, ped)
 
             TriggerServerEvent("net.charSelectorHandlerSetRoutingBucket", NetworkGetNetworkIdFromEntity(ped))
 
@@ -77,7 +78,6 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
             cAPI.ApplyCharacterAppearance(ped, appearance)
 
-            table.insert(gEntities, ped)
             gEntityFromCharId[charId] = ped
             gCharIdFromEntity[ped] = charId
             
