@@ -2,11 +2,22 @@
 RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArray, charAppearence)
     FlushScene()
 
-    print(" ODIDO KD ")
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
 
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
-    -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
+    local lang = i18n.getCurrentLanguage()
+    local locales = i18n.exportData()
+    local translation = locales[lang]
+
+    SendNUIMessage(
+        {
+            type = "translation",
+            locale = translation
+        }
+    )
+
+    TriggerServerEvent("net.charSelectorHandlerSetPlayerRoutingBucket")
 
     cAPI.StartFade(500)
 
@@ -52,11 +63,11 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
             local position = Config.PedPositions[i]
 
-            local ped = CreatePed(pedModelHash, position.x, position.y, position.z, position.w, 0, 0)
+            local ped = CreatePed(pedModelHash, position.x, position.y, position.z, position.w, true, 0)
 
-            Citizen.Wait(300)
+            TriggerServerEvent("net.charSelectorHandlerSetRoutingBucket", ped)
 
-            print(" DOKDODK :: DDFD", pedModel, appearance)
+            Wait(100)
 
             cAPI.ApplyCharacterAppearance(ped, appearance)
 
@@ -116,4 +127,6 @@ function FlushScene()
     DisplayRadar(true)
 
     FreezeEntityPosition(PlayerPedId(), false)
+
+    TriggerServerEvent("net.charSelectorHandlerRemovePlayerRoutingBucket")
 end

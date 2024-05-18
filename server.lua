@@ -25,3 +25,19 @@ RegisterNetEvent('FRP:spawnSelector:deleteCharacter', function(cid)
     User:DeleteCharacter(cid)
     TriggerEvent('FRP:spawnSelector:DisplayCharSelection', source, _source)
 end)
+
+
+RegisterNetEvent("net.charSelectorHandlerSetPlayerRoutingBucket", function()
+    local playerId = source
+    SetPlayerRoutingBucket(playerId, tonumber(playerId))
+end)
+
+RegisterNetEvent("net.charSelectorHandlerRemovePlayerRoutingBucket", function()
+    local playerId = source
+    SetPlayerRoutingBucket(playerId, 0)
+end)
+
+RegisterNetEvent("net.charSelectorHandlerSetRoutingBucket", function(entityId)
+    local playerId = source
+    SetEntityRoutingBucket(NetworkGetEntityFromNetworkId(entityId), tonumber(playerId))
+end)
