@@ -26,6 +26,11 @@ gSelectedCharId = nil
 
 gCharactersAppearance = {}
 
+CreateThread(function()
+    Wait(2000)
+    setLocationOnWeb()
+end)
+
 RegisterNUICallback("createCharacter", function()
     local confirm = lib.alertDialog({
         header = i18n.translate("start_char_creation"),
@@ -88,16 +93,14 @@ end)
 
 AddEventHandler("onResourceStop", function(resourceName)
     if resourceName == GetCurrentResourceName() or resourceName == "frp_core" then
-        setLocationOnWeb()
         FlushScene()
     end
 end)
 
 AddEventHandler("onResourceStart", function(resourceName)
     if resourceName == GetCurrentResourceName() or resourceName == "frp_core" then
-        setLocationOnWeb()
         SendNUIMessage({
             type = 2,
-        })    
+        })
     end
 end)

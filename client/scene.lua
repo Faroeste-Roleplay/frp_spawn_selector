@@ -19,8 +19,6 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
 
-    setLocationOnWeb()
-
     TriggerServerEvent("net.charSelectorHandlerSetPlayerRoutingBucket")
 
     cAPI.StartFade(500)
