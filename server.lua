@@ -1,6 +1,14 @@
 local Proxy = module("frp_lib", "lib/Proxy")
 API = Proxy.getInterface('API')
 
+RegisterNetEvent("FRP:onUserInitialized", function(User)
+    TriggerEvent("FRP:spawnSelector:DisplayCharSelection", User)
+end)
+
+RegisterNetEvent("FRP:onCharacterLogout", function(User)
+    TriggerEvent("FRP:spawnSelector:DisplayCharSelection", User)
+end)
+
 RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
     local playerId = source
     local User = DataUser ~= nil and DataUser or API.GetUserFromSource(playerId)
