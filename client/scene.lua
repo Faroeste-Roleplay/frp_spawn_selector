@@ -35,10 +35,6 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
     PrepareSceneCamera()
 
-    -- SendNUIMessage({type = 2}) -- clear UI
-
-    -- Wait(500)
-
     SetNuiFocus(true, true)
 
     if charAppearence ~= nil then
@@ -90,6 +86,8 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
     end
 
     cAPI.EndFade(500)
+
+    setLocationOnWeb()
 
     SendNUIMessage(
         {

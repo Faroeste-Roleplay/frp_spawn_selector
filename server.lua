@@ -3,8 +3,7 @@ API = Proxy.getInterface('API')
 
 RegisterNetEvent('FRP:spawnSelector:DisplayCharSelection', function(DataUser)
     local playerId = source
-
-    User = DataUser or API.GetUserFromSource(playerId)
+    local User = DataUser ~= nil and DataUser or API.GetUserFromSource(playerId)
 
     TriggerClientEvent('FRP:spawnSelector:DisplayCharSelection', User:GetSource(), User:GetCharacters(), User:GetCharactersAppearance())
 end)
