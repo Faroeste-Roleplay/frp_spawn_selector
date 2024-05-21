@@ -1,5 +1,6 @@
 local Proxy = module("frp_lib", "lib/Proxy")
 API = Proxy.getInterface('API')
+VirtualWorld = Proxy.getInterface("virtual_world")
 
 RegisterNetEvent("FRP:onUserLoaded", function(User)
     TriggerEvent("FRP:spawnSelector:DisplayCharSelection", User)
@@ -36,12 +37,12 @@ end)
 
 RegisterNetEvent("net.charSelectorHandlerSetPlayerRoutingBucket", function()
     local playerId = source
-    SetPlayerRoutingBucket(playerId, tonumber(playerId))
+    VirtualWorld:AddPlayerOnVirtualWorld( playerId, tonumber(playerId) )
 end)
 
 RegisterNetEvent("net.charSelectorHandlerRemovePlayerRoutingBucket", function()
     local playerId = source
-    SetPlayerRoutingBucket(playerId, 0)
+    VirtualWorld:AddPlayerToGlobalWorld( playerId )
 end)
 
 RegisterNetEvent("net.charSelectorHandlerSetRoutingBucket", function(entityId)
