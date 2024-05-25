@@ -21,7 +21,7 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
     TriggerServerEvent("net.charSelectorHandlerSetPlayerRoutingBucket")
 
-    cAPI.StartFade(500)
+    cAPI.StartFade(500, true)
 
     cAPI.PlayerAsInitialized(false)
     local playerPed = PlayerPedId()
@@ -68,15 +68,15 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
             end
             table.insert(gEntities, ped)
 
+            gEntityFromCharId[charId] = ped
+            gCharIdFromEntity[ped] = charId
+
             TriggerServerEvent("net.charSelectorHandlerSetRoutingBucket", NetworkGetNetworkIdFromEntity(ped))
 
             Wait(100)
 
             cAPI.ApplyCharacterAppearance(ped, appearance)
 
-            gEntityFromCharId[charId] = ped
-            gCharIdFromEntity[ped] = charId
-            
             local coords = GetEntityCoords(ped, false)
 
             gCharactersAppearance[charId] = appearance

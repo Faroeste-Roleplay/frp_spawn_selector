@@ -2,7 +2,7 @@
 
 function interpCamera(entity)
     local pedCoords = GetEntityCoords(entity)
-    local entityCoords = cAPI.getFromCoordsFromPlayer(pedCoords, entity, 2.0)
+    local entityCoords = cAPI.GetFromCoordsFromPlayer(pedCoords, entity, 2.0)
 
 end
 
@@ -37,7 +37,7 @@ function PrepareSceneCamera()
 end
 
 function PrepareInterpToFaceCamera(entity)
-    local camPos = GetOffsetFromEntityInWorldCoords(entity, 0.0, 2.8, 0.5)
+    local camPos = GetOffsetFromEntityInWorldCoords(entity, 0.0, 2.0, 0.5)
     local boneIndex = GetPedBoneIndex(entity, Config.SKEL_HEAD)
     local entityBoneWorldPosition = GetWorldPositionOfEntityBone(entity, boneIndex)
     local pedPosition = GetEntityCoords(entity)
@@ -46,11 +46,11 @@ function PrepareInterpToFaceCamera(entity)
                             pedPosition.y - entityBoneWorldPosition.y,
                             pedPosition.z - entityBoneWorldPosition.z)
 
-    local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", camPos, vec3(0.0, 0.0, 0.0), 40.0, false, 0)
+    local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", camPos, vec3(0.0, 0.0, 0.0), 26.0, false, 0)
 
-    N_0x11f32bb61b756732(cam, 0.6) -- SetCamFocusDistance
+    N_0x11f32bb61b756732(cam, 1) -- SetCamFocusDistance
 
-    PointCamAtEntity(cam, entity, offset.x, offset.y, 0.5, true)
+    PointCamAtEntity(cam, entity, offset.x + 0.2, offset.y, 0.5, true)
 
     SetCamActiveWithInterp(cam, gInterpToFaceSceneCamera or gSceneCamera, Config.INTERP_TO_FACE_TIME, true, true)
 
