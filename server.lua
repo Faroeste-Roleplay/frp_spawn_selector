@@ -1,5 +1,7 @@
 local Proxy = module("frp_lib", "lib/Proxy")
 API = Proxy.getInterface('API')
+VirtualWorld = Proxy.getInterface("virtual_world")
+
 
 RegisterNetEvent("FRP:onUserLoaded", function(User)
     TriggerEvent("FRP:spawnSelector:DisplayCharSelection", User)
