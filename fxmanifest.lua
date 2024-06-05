@@ -17,7 +17,6 @@ client_scripts {
 }
 
 server_scripts {
-	"@frp_lib/library/linker.lua",
 	'server.lua'
 }
 
