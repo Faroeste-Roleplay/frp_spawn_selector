@@ -1,7 +1,11 @@
+
+local Tunnel = module("frp_lib", "lib/Tunnel")
 local Proxy = module("frp_lib", "lib/Proxy")
+
 API = Proxy.getInterface('API')
 VirtualWorld = Proxy.getInterface("virtual_world")
-
+FirstSpawn = Proxy.getInterface("spawn_selector")
+cFirstSpawn = Tunnel.getInterface("spawn_selector")
 
 RegisterNetEvent("FRP:onUserLoaded", function(User)
     TriggerEvent("FRP:spawnSelector:DisplayCharSelection", User)
@@ -23,8 +27,20 @@ RegisterNetEvent('FRP:spawnSelector:selectCharacter', function(cid)
     local User = API.GetUserFromSource(_source)
     local Character = User:SetCharacter(cid)
 
+    local spawnCoords
+
     if Character then
-        User:DrawCharacter()
+        if Config.DisableAutoSpawn then
+            cFirstSpawn.RegisterLastPositionCoords(_source, Character:GetLastPosition())
+
+            if FirstSpawn.CharIdHasSpawnedAfterRestart( cid ) then
+                User:DrawCharacter()
+            else
+                TriggerClientEvent("firstSpawnSelector:requestSpawnSelector", _source)
+            end
+        else
+            User:DrawCharacter()
+        end
     end
 end)
 

@@ -76,6 +76,7 @@ RegisterNUICallback("spawnCharacterSelected", function(charId)
     cAPI.SetPlayerDefaultModel()
 
     TriggerServerEvent("FRP:spawnSelector:selectCharacter", charId)
+
     cAPI.StartFade(500)
     Citizen.Wait(500)
 

@@ -3,6 +3,8 @@ Config = {}
 Config.INTERP_TO_FACE_TIME = 800
 Config.SKEL_HEAD = 21030
 
+Config.DisableAutoSpawn = true
+
 Config.CameraScenePosition = vector3(877.77, 1264.39, 235.37)
 Config.CameraSceneRotation = vector3(0.0, 0.0, 200.00)
 
