@@ -15,6 +15,9 @@ end
 RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArray, charAppearence)
     FlushScene()
 
+    DisplayHud(false)
+    DisplayRadar(false)
+
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
     -- O characterARRAY tá enviando TODA INFORMAÇÃO DO CHARACTER
