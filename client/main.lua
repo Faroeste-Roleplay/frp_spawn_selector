@@ -15,6 +15,8 @@ gCharIdFromEntity = { }
 
 gEntityFromCharId = { }
 
+gGamePlayPedOverlayInstance = { }
+
 gSceneCamera = nil
 gInterpToFaceSceneCamera = nil
 
@@ -81,6 +83,8 @@ RegisterNUICallback("spawnCharacterSelected", function(charId)
     Citizen.Wait(500)
 
     ClonePedToTarget(gEntityFromCharId[charId], PlayerPedId())
+    
+    cAPI.SetPedOverlayInstance( gGamePlayPedOverlayInstance[charId] )
 
     FlushScene()
 

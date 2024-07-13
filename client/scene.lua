@@ -80,6 +80,10 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
             cAPI.ApplyCharacterAppearance(ped, appearance)
 
+            local gamePlayInstance = cAPI.GetPedOverlayInstance()
+
+            gGamePlayPedOverlayInstance[charId] = gamePlayInstance
+
             local coords = GetEntityCoords(ped, false)
 
             gCharactersAppearance[charId] = appearance
@@ -127,6 +131,8 @@ function FlushScene()
 
     gSceneCamera = nil
     gInterpToFaceSceneCamera = nil
+
+    gGamePlayPedOverlayInstance = { }
 
     gIsInSelectedScene = false
 
