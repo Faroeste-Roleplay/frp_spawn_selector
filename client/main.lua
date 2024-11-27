@@ -70,11 +70,27 @@ RegisterNUICallback("selectCharacter", function(charId)
 
 end)
 
+local function setPlayerPedScale(height)
+    Wait(12500)
+
+    local isPositive = height > 185;
+    local variation = (math.abs(185 - height) * 0.005333)
+
+    if not isPositive then
+        variation = -(variation)
+    end
+
+    SetPedScale(PlayerPedId(), 1.0 + variation);
+end
+
 RegisterNUICallback("spawnCharacterSelected", function(charId)
     SetNuiFocus(false, false)
     DisplayHud(true)
 
-    cAPI.SetDataAppearence(gCharactersAppearance[charId])
+    local appearance = gCharactersAppearance[ charId ]
+    local height = appearance.appearance.height
+
+    cAPI.SetDataAppearence(appearance)
     cAPI.SetPlayerDefaultModel()
 
     TriggerServerEvent("FRP:spawnSelector:selectCharacter", charId)
@@ -85,6 +101,8 @@ RegisterNUICallback("spawnCharacterSelected", function(charId)
     ClonePedToTarget(gEntityFromCharId[charId], PlayerPedId())
     
     cAPI.SetPedOverlayInstance( gGamePlayPedOverlayInstance[charId] )
+
+    setPlayerPedScale(height)
 
     FlushScene()
 
