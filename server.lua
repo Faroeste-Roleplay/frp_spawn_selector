@@ -3,6 +3,8 @@ local Tunnel = module("frp_lib", "lib/Tunnel")
 local Proxy = module("frp_lib", "lib/Proxy")
 
 API = Proxy.getInterface('API')
+cAPI = Tunnel.getInterface("API")
+
 VirtualWorld = Proxy.getInterface("virtual_world")
 FirstSpawn = Proxy.getInterface("spawn_selector")
 cFirstSpawn = Tunnel.getInterface("spawn_selector")
@@ -27,11 +29,9 @@ RegisterNetEvent('FRP:spawnSelector:selectCharacter', function(cid)
     local User = API.GetUserFromSource(_source)
     local Character = User:SetCharacter(cid)
 
-    local spawnCoords
-
     if Character then
         if Config.DisableAutoSpawn then
-            cFirstSpawn.RegisterLastPositionCoords(_source, Character:GetLastPosition())
+            cFirstSpawn.RegisterLastPositionCoords(_source, Character:GetLastPosition() or vec3(0,0,0))
 
             if FirstSpawn.CharIdHasSpawnedAfterRestart( cid ) then
                 User:DrawCharacter()
@@ -44,13 +44,27 @@ RegisterNetEvent('FRP:spawnSelector:selectCharacter', function(cid)
     end
 end)
 
+RegisterNetEvent('FRP:spawnSelector:selectCharacterWithDefaultCoords', function(cid)
+    local _source = source
+    local User = API.GetUserFromSource(_source)
+    local Character = User:SetCharacter(cid)
+
+    cAPI.StartFade(_source, 500 )
+
+    if Character then
+        Character:SetGameAppearance()
+        User:DrawCharacter()
+
+        cAPI.EndFade(_source, 500 )
+    end
+end)
+
 RegisterNetEvent('FRP:spawnSelector:deleteCharacter', function(cid)
     local _source = source
     local User = API.GetUserFromSource(_source)
     User:DeleteCharacter(cid)
     TriggerEvent('FRP:spawnSelector:DisplayCharSelection', source, _source)
 end)
-
 
 RegisterNetEvent("net.charSelectorHandlerSetPlayerRoutingBucket", function()
     local playerId = source
