@@ -109,10 +109,10 @@ RegisterNUICallback("spawnCharacterSelected", function(charId)
     cAPI.EndFade(500)
 end)
 
-RegisterNUICallback("deleteCharacter", function(charId)
-    TriggerServerEvent("FRP:spawnSelector:deleteCharacter", charId)
-    TriggerEvent("FRP:NOTIFY:Simple", i18n.translate("char_deleted"))
-end)
+-- RegisterNUICallback("deleteCharacter", function(charId)
+--     TriggerServerEvent("FRP:spawnSelector:deleteCharacter", charId)
+--     TriggerEvent("FRP:NOTIFY:Simple", i18n.translate("char_deleted"))
+-- end)
 
 AddEventHandler("onResourceStop", function(resourceName)
     if resourceName == GetCurrentResourceName() or resourceName == "frp_core" then
