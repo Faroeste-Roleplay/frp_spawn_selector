@@ -55,6 +55,8 @@ RegisterNetEvent('FRP:spawnSelector:selectCharacterWithDefaultCoords', function(
         Character:SetGameAppearance()
         User:DrawCharacter()
 
+        exports.ox_inventory:AddItem(_source, "luckybox", 1)
+
         cAPI.EndFade(_source, 500 )
     end
 end)
