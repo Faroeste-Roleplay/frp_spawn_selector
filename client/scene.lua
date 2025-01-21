@@ -96,6 +96,8 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
 
     setLocationOnWeb()
 
+    TriggerEvent("FRP:DisableLoading")
+
     SendNUIMessage(
         {
             type = 1,
