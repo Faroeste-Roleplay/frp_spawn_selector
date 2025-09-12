@@ -33,7 +33,8 @@ RegisterNetEvent("FRP:spawnSelector:DisplayCharSelection", function(characterArr
     SetEntityInvincible(playerPed, true)
     SetEntityVisible(playerPed, false)
     NetworkSetEntityInvisibleToNetwork(playerPed, true)
-
+    
+    ShutdownLoadingScreenNui()
     ShutdownLoadingScreen()
 
     PrepareSceneCamera()
